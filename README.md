@@ -40,40 +40,66 @@ Before using this devcontainer, make sure you have:
 
 ## Setup Instructions
 
-### 1. Clone or Download This Repository
+Follow these simple steps to get your development environment up and running:
+
+### Step 1: Clone the Project
 
 ```bash
 git clone https://github.com/aemal/claude-code-boiler-plate
 cd claude-code-boiler-plate
 ```
 
-### 2. Configure Environment Variables
+### Step 2: Prepare Your Environment
 
-Create a `.env` file in the root directory with your API keys:
+1. **Run Docker Desktop** - Make sure Docker Desktop is installed and running on your system
+2. **Install Dev Containers Extension** - Ensure you have the "Dev Containers" extension installed in Cursor
+3. **Open the project** in Cursor:
 
 ```bash
-cp .env.example .env
+cursor .
 ```
 
-Then edit the `.env` file and replace the placeholder values with your actual API keys:
+> **Note**: You might not be able to open Cursor by typing `cursor .`. If this doesn't work, search ChatGPT for "how to set up cursor command line" to find instructions for your operating system.
+
+![Docker Desktop & Dev Containers running](images/01-dev-container-and-docker.png)
+
+### Step 3: Configure API Keys
+
+Open the `.env` file and provide your API keys:
 
 ```env
-# Your Anthropic API key for Claude
-ANTHROPIC_API_KEY=sk-ant-api03-your_actual_key_here
-
-# Your Perplexity API key
-PERPLEXITY_API_KEY=pplx-your_actual_key_here
+ANTHROPIC_API_KEY=your_anthropic_key_here
+PERPLEXITY_API_KEY=your_perplexity_key_here
 ```
 
-> ⚠️ **Important**: Never commit the `.env` file to version control. It's already included in `.gitignore` for security.
+![.env file configuration](images/02-env-variables.png)
 
-### 3. Open in Dev Container
+### Step 4: Open in Dev Container
 
-1. Open Cursor IDE
-2. Open the project folder (`File` → `Open Folder`)
-3. Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows/Linux)
-4. Type and select: **"Dev Containers: Open Folder in Container"**
-5. Wait for the container to build and initialize (this may take a few minutes on first run)
+Click on **"Reopen in Container"** when prompted, or manually trigger it:
+
+1. Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows/Linux)
+2. Select **"Dev Containers: Open Folder in Container"**
+
+![Command palette Dev Containers option](images/command-palette-dev-containers.png)
+![Reopen in Container notification](images/reopen-in-container-notification.png)
+
+### Step 5: Wait for the Magic! ✨
+
+The system will automatically:
+- Create a Docker container
+- Install Claude Code
+- Install Task Master AI
+- Set up the MCP server
+
+You should see the Docker container running in the Docker Desktop app.
+
+![Docker Desktop running container](images/docker-desktop-running-container.png)
+![Terminal setup completion](images/terminal-setup-completion.png)
+
+---
+
+## Detailed Setup Information
 
 ## What Happens During Container Startup
 
