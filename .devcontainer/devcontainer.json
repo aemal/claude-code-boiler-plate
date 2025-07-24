@@ -6,10 +6,8 @@
       "TZ": "${localEnv:TZ:America/Los_Angeles}"
     }
   },
-  "runArgs": [
-    "--cap-add=NET_ADMIN",
-    "--cap-add=NET_RAW"
-  ],
+  "runArgs": ["--cap-add=NET_ADMIN", "--cap-add=NET_RAW"],
+  "postCreateCommand": "bash /workspace/.devcontainer/init-environment.sh",
   "customizations": {
     "vscode": {
       "extensions": [

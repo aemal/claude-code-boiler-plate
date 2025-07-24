@@ -23,13 +23,19 @@ sudo /usr/local/bin/init-firewall.sh
 # Set up MCP connection if environment variables are available
 if [ -n "${ANTHROPIC_API_KEY:-}" ] && [ -n "${PERPLEXITY_API_KEY:-}" ]; then
     echo "Setting up MCP connection..."
-    /usr/local/bin/setup-mcp.sh
+    if /usr/local/bin/setup-mcp.sh; then
+        echo "✅ MCP setup completed successfully"
+    else
+        echo "⚠️  MCP setup encountered issues but continuing with initialization..."
+    fi
 else
     echo "Skipping MCP setup - API keys not found in environment"
     echo "You can run 'sudo /usr/local/bin/setup-mcp.sh' manually after setting up your .env file"
 fi
 
-echo "Environment initialization complete!" if [ -d "/workspace/.taskmaster" ]; then
+echo "Environment initialization complete!"
+
+if [ -d "/workspace/.taskmaster" ]; then
     echo "✅ Taskmaster already initialized - .taskmaster folder found"
 else
     echo "🚀 Initializing Taskmaster project..."
@@ -42,3 +48,10 @@ else
     
     if task-master init -y; then
         echo "✅ Taskmaster project initialized successfully!"
+    else
+        echo "❌ Failed to initialize Taskmaster project"
+        echo "You can run 'task-master init' manually to set up the project"
+    fi
+fi
+
+echo "🎉 All initialization steps completed!"
