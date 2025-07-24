@@ -29,4 +29,16 @@ else
     echo "You can run 'sudo /usr/local/bin/setup-mcp.sh' manually after setting up your .env file"
 fi
 
-echo "Environment initialization complete!" 
+echo "Environment initialization complete!" if [ -d "/workspace/.taskmaster" ]; then
+    echo "✅ Taskmaster already initialized - .taskmaster folder found"
+else
+    echo "🚀 Initializing Taskmaster project..."
+    
+    # Ensure the npm global bin is in PATH
+    export PATH="/usr/local/share/npm-global/bin:$PATH"
+    
+    # Change to workspace directory and initialize taskmaster
+    cd /workspace
+    
+    if task-master init -y; then
+        echo "✅ Taskmaster project initialized successfully!"
